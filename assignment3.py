@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import csv
 import re
 from collections import Counter
@@ -41,7 +41,7 @@ def parse_rows(csv_text: str):
 
 def main():
     ap = argparse.ArgumentParser(description="Week 3: CSV + regex text processing")
-    ap.add_argument("--url", required=True, help="URL of the weblog CSV")
+    ap.add_argument("--url", required=True, help="URL of the weblog CSV (http/https or file://)")
     ap.add_argument("--hours", action="store_true",
                     help="(Extra credit) print hours sorted by number of hits")
     args = ap.parse_args()
