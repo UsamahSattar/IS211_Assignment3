@@ -1,4 +1,6 @@
-﻿import argparse
+﻿
+
+import argparse
 import csv
 import re
 from collections import Counter
@@ -26,9 +28,10 @@ def download_csv_text(url: str) -> str:
     return data.decode("utf-8", errors="replace")
 
 def parse_rows(csv_text: str):
+    """Yield (path, datetime, user_agent) from the CSV text (3 columns)."""
     reader = csv.reader(StringIO(csv_text))
     for row in reader:
-        if not row or len(row) < 5:
+        if not row or len(row) < 3:
             continue
         path = row[0].strip()
         dt_str = row[1].strip()
