@@ -1,4 +1,4 @@
-# assignment3.py — Week 3 (robust CSV loader, regex, and a --peek debugger)
+
 
 import argparse
 import csv
@@ -43,7 +43,7 @@ def sniff_reader(csv_text: str):
         delim = ","
     return csv.reader(StringIO(csv_text), delimiter=delim)
 
-# accept multiple datetime shapes; None if we can’t parse (still count the row)
+
 DT_FORMATS = ("%m/%d/%Y %H:%M:%S", "%Y-%m-%d %H:%M:%S", "%m/%d/%y %H:%M:%S")
 def try_parse_dt(s: str):
     s = (s or "").strip()
