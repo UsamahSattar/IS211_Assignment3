@@ -1,5 +1,4 @@
 
-
 import argparse
 import csv
 import re
@@ -10,7 +9,19 @@ from urllib.request import urlopen
 import os
 
 IMAGE_RE = re.compile(r"\.(jpg|gif|png)$", re.IGNORECASE)
+BROWSER_PATTERNS = [
+    ("Chrome",             re.compile(r"Chrome(?!.*Chromium)", re.I)),      
+    ("Firefox",            re.compile(r"Firefox", re.I)),
+    ("Internet Explorer",  re.compile(r"MSIE|Trident", re.I)),
+    ("Safari",             re.compile(r"Safari(?!.*Chrome)", re.I)),        
+]
 
+def detect_browser(user_agent: str) -> str:
+    ua = user_agent or ""
+    for name, pat in BROWSER_PATTERNS:
+        if pat.search(ua):
+            return name
+    return "Other"
 def detect_browser(ua: str) -> str:
     ua = ua or ""
     if "Chrome" in ua and "Chromium" not in ua:
